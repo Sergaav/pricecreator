@@ -1,5 +1,8 @@
 package model;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Item {
     private int itemId;
     private String nameRus;
@@ -10,6 +13,78 @@ public class Item {
     private double weight;
     private String ItemCatNumber;
     private String brand;
+
+    public int getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(int itemId) {
+        this.itemId = itemId;
+    }
+
+    public String getNameRus() {
+        return nameRus;
+    }
+
+    public void setNameRus(String nameRus) {
+        this.nameRus = nameRus;
+    }
+
+    public String getNameUkr() {
+        return nameUkr;
+    }
+
+    public void setNameUkr(String nameUkr) {
+        this.nameUkr = nameUkr;
+    }
+
+    public double getPriceIn() {
+        return priceIn;
+    }
+
+    public void setPriceIn(double priceIn) {
+        this.priceIn = priceIn;
+    }
+
+    public double getPriceStruck() {
+        return priceStruck;
+    }
+
+    public void setPriceStruck(double priceStruck) {
+        this.priceStruck = priceStruck;
+    }
+
+    public double getPriceOut() {
+        return priceOut;
+    }
+
+    public void setPriceOut(double priceOut) {
+        this.priceOut = priceOut;
+    }
+
+    public double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+
+    public String getItemCatNumber() {
+        return ItemCatNumber;
+    }
+
+    public void setItemCatNumber(String itemCatNumber) {
+        ItemCatNumber = itemCatNumber;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
 
     public Item() {
     }
