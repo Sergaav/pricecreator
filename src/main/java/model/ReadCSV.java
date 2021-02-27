@@ -24,13 +24,7 @@ public class ReadCSV {
 
     public void readFileCSV (Queue<Item> queue){
         ExecutorService executorService = Executors.newFixedThreadPool(10);
-        executorService.submit(()->{
-            try {
-                while ()
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-        });
+
     }
 
     private static ColumnPositionMappingStrategy setColumnMapping()

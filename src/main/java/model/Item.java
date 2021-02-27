@@ -1,10 +1,12 @@
 package model;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 public class Item {
-    private int itemId;
+
+    private int cart;
     private String nameRus;
     private String nameUkr;
     private double priceIn;
@@ -14,12 +16,23 @@ public class Item {
     private String ItemCatNumber;
     private String brand;
 
-    public int getItemId() {
-        return itemId;
+    public Item(int cart, String itemCatNumber, String nameRus, String nameUkr, String brand, double priceIn, double weight) {
+        this.cart = cart;
+        this.nameRus = nameRus;
+        this.nameUkr = nameUkr;
+        this.priceIn = priceIn;
+        this.weight = weight;
+        this.ItemCatNumber = itemCatNumber;
+        this.brand = brand;
     }
 
-    public void setItemId(int itemId) {
-        this.itemId = itemId;
+    @Id
+    public int getCart() {
+        return cart;
+    }
+
+    public void setCart(int itemId) {
+        this.cart = itemId;
     }
 
     public String getNameRus() {
@@ -47,7 +60,20 @@ public class Item {
     }
 
     public double getPriceStruck() {
-        return priceStruck;
+        double temp=0;
+        if (priceIn < 100.00) {
+            temp = priceIn * 2;
+        } else if (priceIn < 500.00 && priceIn >= 100.00) {
+            temp = priceIn * 1.90;
+        }else if (priceIn < 1000.00 && priceIn >= 500.00) {
+            temp = priceIn * 1.80;
+        }else if (priceIn < 3000.00 && priceIn >= 1000.00) {
+            temp = priceIn * 1.70;
+        }else if (priceIn >= 3000.00) {
+            temp = priceIn * 1.60;
+        }
+
+        return temp;
     }
 
     public void setPriceStruck(double priceStruck) {
@@ -55,7 +81,20 @@ public class Item {
     }
 
     public double getPriceOut() {
-        return priceOut;
+        double temp=0;
+        if (priceIn < 100.00) {
+            temp = priceIn * 1.80;
+        } else if (priceIn < 500.00 && priceIn >= 100.00) {
+            temp = priceIn * 1.70;
+        }else if (priceIn < 1000.00 && priceIn >= 500.00) {
+            temp = priceIn * 1.70;
+        }else if (priceIn < 3000.00 && priceIn >= 1000.00) {
+            temp = priceIn * 1.60;
+        }else if (priceIn >= 3000.00) {
+            temp = priceIn * 1.50;
+        }
+
+        return temp;
     }
 
     public void setPriceOut(double priceOut) {
@@ -89,10 +128,10 @@ public class Item {
     public Item() {
     }
 
-    public Item(int itemId, String nameRus, String nameUkr,
+    public Item(int cart, String nameRus, String nameUkr,
                 double priceIn, double priceStruck, double priceOut,
                 double weight, String itemCatNumber, String brand) {
-        this.itemId = itemId;
+        this.cart = cart;
         this.nameRus = nameRus;
         this.nameUkr = nameUkr;
         this.priceIn = priceIn;
@@ -102,4 +141,5 @@ public class Item {
         ItemCatNumber = itemCatNumber;
         this.brand = brand;
     }
+
 }
