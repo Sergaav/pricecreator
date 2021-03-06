@@ -6,7 +6,7 @@ import javax.persistence.Id;
 @Entity
 public class Item {
 
-    private int cart;
+    private String cart;
     private String nameRus;
     private String nameUkr;
     private double priceIn;
@@ -15,8 +15,17 @@ public class Item {
     private double weight;
     private String ItemCatNumber;
     private String brand;
+    private boolean stock;
 
-    public Item(int cart, String itemCatNumber, String nameRus, String nameUkr, String brand, double priceIn, double weight) {
+    public boolean isStock() {
+        return stock;
+    }
+
+    public void setStock(boolean stock) {
+        this.stock = stock;
+    }
+
+    public Item(String cart, String itemCatNumber, String nameRus, String nameUkr, String brand, double priceIn, boolean stock, double weight) {
         this.cart = cart;
         this.nameRus = nameRus;
         this.nameUkr = nameUkr;
@@ -24,14 +33,15 @@ public class Item {
         this.weight = weight;
         this.ItemCatNumber = itemCatNumber;
         this.brand = brand;
+        this.stock=stock;
     }
 
     @Id
-    public int getCart() {
+    public String getCart() {
         return cart;
     }
 
-    public void setCart(int itemId) {
+    public void setCart(String itemId) {
         this.cart = itemId;
     }
 
@@ -128,8 +138,8 @@ public class Item {
     public Item() {
     }
 
-    public Item(int cart, String nameRus, String nameUkr,
-                double priceIn, double priceStruck, double priceOut,
+    public Item(String cart, String nameRus, String nameUkr,
+                double priceIn, double priceStruck, double priceOut,boolean stock,
                 double weight, String itemCatNumber, String brand) {
         this.cart = cart;
         this.nameRus = nameRus;
@@ -138,8 +148,15 @@ public class Item {
         this.priceStruck = priceStruck;
         this.priceOut = priceOut;
         this.weight = weight;
-        ItemCatNumber = itemCatNumber;
+        this.ItemCatNumber = itemCatNumber;
         this.brand = brand;
+        this.stock=stock;
     }
 
+    @Override
+    public String toString() {
+        return "cart:"+cart +" nameRus:"+nameRus+ " nameUkr:"+nameUkr+
+                " priceIn:"+priceIn+" StockPrice: "+priceOut+" stock availible: "+ stock+ "brand:"+brand+" weight: "+weight+
+                " catNumber: "+ItemCatNumber;
+    }
 }
