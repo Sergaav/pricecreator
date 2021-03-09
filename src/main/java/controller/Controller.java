@@ -1,14 +1,12 @@
 package controller;
 
+import model.InsertIntoDB;
 import model.Item;
 import model.XMLReader;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.xml.sax.SAXException;
 
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Queue;
-
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -16,23 +14,25 @@ public class Controller {
 
     public static void main(String[] args) {
         Queue<Item> itemQueue=null;
+        Connection connection=null;
         ExecutorService executor = Executors.newFixedThreadPool(10);
 
 
         XMLReader xmlReader = new XMLReader();
-       itemQueue = xmlReader.getItemQueueFromXML("C:\\Price2.xml");
+       itemQueue = xmlReader.getItemQueueFromXML("C:\\Price.xml");
 
-        if (itemQueue!=null) {
-          for (Item items : itemQueue) {
-              System.out.println(items.toString());
+        InsertIntoDB insertIntoDB = new InsertIntoDB();
+        Queue<Item> finalItemQueue = itemQueue;
+        executor.submit(()->{
+          for (Item item : finalItemQueue){
+              insertIntoDB.createPreparedStatement(item.getCart(),item.getItemCatNumber(), item.getNameRus(),
+                      item.getNameUkr(),item.getBrand(),item.getPriceIn(),item.getPriceOut(),item.getPriceStruck(),
+                      item.getWeight(),item.isStock());
+
           }
-
-      }
-
-
-
-
-
+      });
+        executor.shutdown();
 
     }
-}
+    }
+

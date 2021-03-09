@@ -53,7 +53,7 @@ public class XMLReader {
                 item.setNameUkr(element.getChild("NAIMUKR").getValue().trim());
                 item.setItemCatNumber(element.getChild("KODKAT").getValue().trim());
 
-                item.setPriceIn(Double.valueOf(element.getChild("CENAPART").getValue().trim().replace(',','.')));
+                item.setPriceIn(Double.parseDouble(element.getChild("CENAPART").getValue().trim().replace(',','.')));
 
                 item.setBrand(element.getChild("PROIZVODIT").getValue().trim());
                 item.setWeight(Double.parseDouble(element.getChild("MASSA").getValue().trim().replace(',','.')));
@@ -62,9 +62,7 @@ public class XMLReader {
             }
 
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JDOMException e) {
+        } catch (IOException | JDOMException e) {
             e.printStackTrace();
         }
 

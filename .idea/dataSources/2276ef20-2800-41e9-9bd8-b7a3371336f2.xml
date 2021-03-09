@@ -4487,16 +4487,16 @@ SELECT|sys.sys_config
     </column>
     <column id="1096" parent="366" name="nameRus">
       <Position>3</Position>
-      <DataType>varchar(45)|0s</DataType>
+      <DataType>varchar(250)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="1097" parent="366" name="nameUkr">
       <Position>4</Position>
-      <DataType>varchar(45)|0s</DataType>
+      <DataType>varchar(250)|0s</DataType>
     </column>
     <column id="1098" parent="366" name="brand">
       <Position>5</Position>
-      <DataType>varchar(45)|0s</DataType>
+      <DataType>varchar(120)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="1099" parent="366" name="priceIn">
