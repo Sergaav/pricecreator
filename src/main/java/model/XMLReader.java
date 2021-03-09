@@ -42,28 +42,21 @@ public class XMLReader {
         try {
             org.jdom2.Document document = createJDOMusingSAXParser(fileName);
             Element root = document.getRootElement();
-
             List<Element> ItemElements = root.getChildren("Прайс");
             for (Element element : ItemElements) {
                 Item item = new Item();
-
                 item.setCart(element.getChild("KART").getValue().trim());
-
                 item.setNameRus(element.getChild("NAIM").getValue().trim());
                 item.setNameUkr(element.getChild("NAIMUKR").getValue().trim());
                 item.setItemCatNumber(element.getChild("KODKAT").getValue().trim());
-
                 item.setPriceIn(Double.parseDouble(element.getChild("CENAPART").getValue().trim().replace(',','.')));
-
+                item.setPriceIn(Double.parseDouble(element.getChild("CENAPART").getValue().trim().replace(',','.')));
                 item.setBrand(element.getChild("PROIZVODIT").getValue().trim());
                 item.setWeight(Double.parseDouble(element.getChild("MASSA").getValue().trim().replace(',','.')));
-
                 itemQueue.add(item);
             }
-
-
         } catch (IOException | JDOMException e) {
-            e.printStackTrace();
+
         }
 
         return itemQueue;

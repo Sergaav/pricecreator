@@ -14,11 +14,14 @@ public class Controller {
 
     public static void main(String[] args) {
         Queue<Item> itemQueue=null;
+
         Connection connection=null;
+
         ExecutorService executor = Executors.newFixedThreadPool(10);
 
 
         XMLReader xmlReader = new XMLReader();
+
        itemQueue = xmlReader.getItemQueueFromXML("C:\\Price.xml");
 
         InsertIntoDB insertIntoDB = new InsertIntoDB();
@@ -28,7 +31,6 @@ public class Controller {
               insertIntoDB.createPreparedStatement(item.getCart(),item.getItemCatNumber(), item.getNameRus(),
                       item.getNameUkr(),item.getBrand(),item.getPriceIn(),item.getPriceOut(),item.getPriceStruck(),
                       item.getWeight(),item.isStock());
-
           }
       });
         executor.shutdown();
